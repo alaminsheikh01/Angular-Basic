@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 export class ObservableService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
+  getUsers() {
+    return this.http
+      .get<any[]>('https://jsonplaceholder.typicode.com/users')
+      .pipe(map((users)=> users.map((u) => ({...u,name: u?.name?.toUpperCase()}))))
   }
 }
