@@ -1,3 +1,7 @@
-<p>Child Component</p>
-<p>{{message}}</p>
-<button (click)="sendMessage()">Send Message to Parent</button>
+<h3>Observable Ouput</h3>
+
+<ul>
+@for(item of items; track $index){
+    <li>{{item}}</li>
+}
+</ul>

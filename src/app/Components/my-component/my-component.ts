@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ObservableService } from '../../services/observable-service';
 // decorator
 @Component({
   selector: 'app-my-component',
@@ -8,10 +9,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './my-component.css',
 })
 export class MyComponent {
-  @Output() notify = new EventEmitter();
-  message = "Hello Parent"
 
-  sendMessage(){
-    this.notify.emit(this.message)
+  items: Number[] = []
+  constructor(private service: ObservableService) {
+    this.service.getNumber().subscribe({
+      next: (data) =>{
+        this.items.push(data);
+      }
+    });
   }
 }

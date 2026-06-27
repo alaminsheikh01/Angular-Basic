@@ -5,13 +5,9 @@ import { Employee } from "./services/employee/employee";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, MyComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  message="";
-  receive(data: string){
-    this.message = data
-  }
 }
