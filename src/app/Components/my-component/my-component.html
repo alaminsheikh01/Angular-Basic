@@ -1,7 +1,7 @@
 <h3>User List</h3>
 
 <ul>
-@for(user of users; track $index){
-    <li>{{user?.email}}</li>
+@for(user of (users$ | async); track $index){
+    <li>{{user?.name}}</li>
 }
 </ul>
