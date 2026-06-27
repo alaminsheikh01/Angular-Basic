@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -5,12 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ObservableService {
-  getNumber(): Observable<Number> {
-    return new Observable((observer) =>{
-      observer.next(10)
-      observer.next(20)
-      observer.next(30)
-      observer.complete();
-    });
+  constructor(private http: HttpClient) {}
+
+  getUsers(): Observable<any> {
+    return this.http.get('https://jsonplaceholder.typicode.com/users');
   }
 }

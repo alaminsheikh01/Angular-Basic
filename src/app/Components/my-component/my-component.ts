@@ -9,12 +9,12 @@ import { ObservableService } from '../../services/observable-service';
   styleUrl: './my-component.css',
 })
 export class MyComponent implements OnInit {
-  items: Number[] = [];
+  users: any[] = [];
   constructor(private service: ObservableService) {}
   ngOnInit(): void {
-    this.service.getNumber().subscribe({
+    this.service.getUsers().subscribe({
       next: (data) => {
-        this.items.push(data);
+        this.users = data;
       },
     });
   }

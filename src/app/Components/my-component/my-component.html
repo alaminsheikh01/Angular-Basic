@@ -1,7 +1,7 @@
-<h3>Observable Ouput</h3>
+<h3>User List</h3>
 
 <ul>
-@for(item of items; track $index){
-    <li>{{item}}</li>
+@for(user of users; track $index){
+    <li>{{user?.email}}</li>
 }
 </ul>
