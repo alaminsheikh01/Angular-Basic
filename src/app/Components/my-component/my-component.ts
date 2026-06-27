@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ObservableService } from '../../services/observable-service';
 // decorator
 @Component({
@@ -8,14 +8,14 @@ import { ObservableService } from '../../services/observable-service';
   templateUrl: './my-component.html',
   styleUrl: './my-component.css',
 })
-export class MyComponent {
-
-  items: Number[] = []
-  constructor(private service: ObservableService) {
+export class MyComponent implements OnInit {
+  items: Number[] = [];
+  constructor(private service: ObservableService) {}
+  ngOnInit(): void {
     this.service.getNumber().subscribe({
-      next: (data) =>{
+      next: (data) => {
         this.items.push(data);
-      }
+      },
     });
   }
 }
