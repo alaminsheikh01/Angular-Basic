@@ -1,0 +1,26 @@
+.card{
+    transition: .3s;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0,0,0,.2);
+}
+
+.table tbody tr{
+    transition: .3s;
+}
+.table tbody tr:hover{
+    background: #f8f8fa;
+}
+
+.form-control{
+    border-radius: 10px;
+}
+.btn{
+    border-radius: 10px;
+    transition: .3s;
+}
+.btn:hover{
+    transform: scale(1.04);
+}
