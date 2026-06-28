@@ -1,30 +1,29 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { ObservableService } from '../../services/observable-service';
-import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, signal } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 // decorator
 @Component({
   selector: 'app-my-component',
   standalone: true,
-  imports: [CommonModule, AsyncPipe],
+  imports: [ReactiveFormsModule],
   templateUrl: './my-component.html',
   styleUrl: './my-component.css',
 })
-export class MyComponent implements OnInit, OnDestroy {
-  subcription!: Subscription;
+export class MyComponent {
+  // courseName : string = 'Angular';
 
-  users: any[] = [];
-  constructor(private service: ObservableService) {}
-  ngOnInit(): void {
-    // this.users$ = this.service.getUsers();
-    this.subcription = this.service.getUsers().subscribe({
-      next: (data) => {
-        this.users = data;
-      },
-    });
+  cityList = signal<string[]>(['Hamburg', 'Kiel']);
+
+  studentObj = signal<any>({
+    name: 'Alamin',
+    city: 'Kiel',
+  });
+
+  AddCityList(name: string) {
+    this.cityList.update((data) => [...data, name]);
   }
 
-  ngOnDestroy(): void {
-    this.subcription.unsubscribe();
+  changeCity() {
+    this.studentObj.update((data: any) => ({ ...data, city: 'Hamburg' }));
   }
 }
