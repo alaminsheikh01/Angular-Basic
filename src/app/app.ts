@@ -5,7 +5,7 @@ import { Employee } from "./services/employee/employee";
 
 @Component({
   selector: 'app-root',
-  imports: [MyComponent, RouterLink, RouterOutlet, RouterLinkActive],
+  imports: [RouterLink, RouterOutlet, RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
