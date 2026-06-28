@@ -27,6 +27,7 @@ export class Todo {
 
   todos: TodoType[] = [];
   selectedTodo: TodoType | null = null;
+  filteredTodos: TodoType[] = []
 
   onCreate() {
     const values = this.todoForm.value;
@@ -40,6 +41,7 @@ export class Todo {
       completed: values?.completed ?? false,
     };
     this.todos.push(newTodo);
+     this.filteredTodos = [...this.todos];
   }
   onUpdate() {
     if (!this.selectedTodo) return;
@@ -88,5 +90,19 @@ export class Todo {
       return;
     }
     this.todos = this.todos.filter((todo) => todo.id !== item?.id);
+  }
+
+  onSearch(event: Event) {
+    const value = (event.target as HTMLInputElement).value.toLocaleLowerCase();
+
+    if (!value) {
+    this.filteredTodos = [...this.todos];
+    return;
+  }
+
+    this.filteredTodos = this.todos.filter(todo => 
+      todo.title.toLocaleLowerCase().includes(value) ||
+      todo.description.toLocaleLowerCase().includes(value)
+    )
   }
 }
