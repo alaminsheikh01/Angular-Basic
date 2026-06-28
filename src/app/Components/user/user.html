@@ -1,0 +1,106 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Table Section -->
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">User List</h4>
+        </div>
+
+        <div class="card-body">
+          <table class="table table-hover table-bordered align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>User Name</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th width="180">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (item of userList$ | async; track $index) {
+                <tr>
+                  <td>{{$index+1}}</td>
+                  <td>{{item?.userName}}</td>
+                  <td>{{item?.fullName}}</td>
+                  <td>{{item?.emailId}}</td>
+
+                  <td>
+                    <button (click)="onEdit(item)" class="btn btn-warning btn-sm me-2">Edit</button>
+
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+
+    <div class="col-lg-4">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">User Form</h4>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="userForm">
+            <div class="mb-3">
+              <label class="form-label">User Name</label>
+              <input
+                formControlName="userName"
+                type="text"
+                class="form-control"
+                placeholder="Enter User Name"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input
+                formControlName="fullName"
+                type="text"
+                class="form-control"
+                placeholder="Enter Full Name"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                formControlName="emailId"
+                type="email"
+                class="form-control"
+                placeholder="Enter Email"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control"
+                placeholder="Enter Password"
+              />
+            </div>
+
+            <div class="d-grid gap-2">
+              @if (userForm.controls['userId'].value == 0) {
+                <button (click)="onSaveUser()" class="btn btn-success">Save</button>
+              }@else {
+                <button (click)="onUpdateUser()" class="btn btn-warning">Update</button>
+              }
+              <button class="btn btn-secondary" (click)="restForm()">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
