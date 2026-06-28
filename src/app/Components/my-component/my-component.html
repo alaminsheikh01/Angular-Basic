@@ -1,9 +1,31 @@
-<h2>Signal</h2>
+<h2>Hello</h2>
+<div class="row">
+  <div class="col-3">
 
+    <select [(ngModel)]="selected" class="form-select">
+      <option>Alamin</option>
+      <option>Sheikh</option>
+      <option>Kiel</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="col-3">
+    @if (selected == 'Other') {
+      <input type="text" class="form-control" placeholder="Other value"/>
+    }
+  </div>
+</div>
 
-
-<button (click)="AddCityList('Munic')">Add City List</button>
-{{cityList()}}
-
-<button (click)="changeCity()">Change City</button>
-{{studentObj()?.name}} -- {{studentObj().city}}
+<div class="row">
+  <div class="col-4">
+    @if (isStudentActive() == true) {
+      <span class="text-success">Student is Active</span>
+    }@else {
+      <span class="text-danger">Student is InActive</span>
+    }
+  </div>
+  <div class="col-4">
+    <button class="btn btn-success m-2" (click)="changeStatus(true)">Make Active</button>
+    <button class="btn btn-warning" (click)="changeStatus(false)">Make InActive</button>
+  </div>
+</div>
