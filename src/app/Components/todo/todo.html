@@ -3,7 +3,7 @@
     <div class="card shadow border-0 rounded-4">
       <div class="card-body">
         <h6>Total Tasks</h6>
-        <h2>{{todos.length}}</h2>
+        <h2>{{ todos.length }}</h2>
       </div>
     </div>
   </div>
@@ -16,6 +16,7 @@
       </div>
     </div>
   </div>
+
   <div class="col-md-4">
     <div class="card shadow border-0 rounded-4">
       <div class="card-body">
@@ -37,7 +38,12 @@
     <div class="card-body">
       <div class="row-mb-3">
         <div class="col-md-6 m-2">
-          <input (input)="onSearch($event)" type="text" class="form-control" placeholder="Search Todo" />
+          <input
+            (input)="onSearch($event)"
+            type="text"
+            class="form-control"
+            placeholder="Search Todo"
+          />
         </div>
         <table class="table table-hover">
           <thead class="table-dark">
@@ -58,7 +64,7 @@
           </thead>
 
           @if (todos.length == 0) {
-            <div class="alert alert-info mt-3 ">No Todo Available</div>
+            <div class="alert alert-info mt-3">No Todo Available</div>
           } @else {
             <tbody>
               @for (item of todos; track $index) {
@@ -66,7 +72,7 @@
                   <td>{{ $index + 1 }}</td>
 
                   <td>{{ item?.title }}</td>
-                  <td>{{item?.description}}</td>
+                  <td>{{ item?.description }}</td>
 
                   <td>
                     <span class="badge bg-warning"> Pending </span>
@@ -81,7 +87,9 @@
                   <td>
                     <button (click)="onEdit(item)" class="btn btn-warning btn-sm">Edit</button>
 
-                    <button (click)="onDelete(item)" class="btn btn-danger btn-sm ms-2">Delete</button>
+                    <button (click)="onDelete(item)" class="btn btn-danger btn-sm ms-2">
+                      Delete
+                    </button>
                   </td>
                 </tr>
               }
@@ -142,12 +150,12 @@
           <div class="d-grid">
             @if (selectedTodo) {
               <button type="submit" [disabled]="todoForm.invalid" class="btn btn-success">
-              Update Todo
-            </button>
-            }@else {
+                Update Todo
+              </button>
+            } @else {
               <button type="submit" [disabled]="todoForm.invalid" class="btn btn-success">
-              Save Todo
-            </button>
+                Save Todo
+              </button>
             }
           </div>
         </form>

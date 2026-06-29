@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center mb-4">
+            Rock Paper scissors
+        </h2>
+        <div class="text-center">
+            @for (item of choices; track $index) {
+                <button (click)="play(item)" class="btn btn-primary m-2">{{item}}</button>
+            }
+        </div>
+        <hr/>
+        <h4>Your Choice: {{playerChoice}}</h4>
+        <h4>Computer Choice: {{computerChoice}}</h4>
+        <h3 class="mt-3">Result: {{result}}</h3>
+
+        <hr/>
+        <h5>Player Score: {{playerScore}}</h5>
+        <h5>Computer Score: {{computerScore}}</h5>
+
+        <button (click)="reset()" class="btn btn-danger mt-3">Reset</button>
+    </div>
+</div>

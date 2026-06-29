@@ -27,7 +27,7 @@ export class Todo {
 
   todos: TodoType[] = [];
   selectedTodo: TodoType | null = null;
-  filteredTodos: TodoType[] = []
+  filteredTodos: TodoType[] = [];
 
   onCreate() {
     const values = this.todoForm.value;
@@ -41,8 +41,9 @@ export class Todo {
       completed: values?.completed ?? false,
     };
     this.todos.push(newTodo);
-     this.filteredTodos = [...this.todos];
+    this.filteredTodos = [...this.todos];
   }
+
   onUpdate() {
     if (!this.selectedTodo) return;
 
@@ -84,7 +85,7 @@ export class Todo {
   }
   onDelete(item: TodoType) {
     const isConfirm = confirm('Are you sure want to delete!');
-    console.log("item",item)
+    console.log('item', item);
 
     if (!isConfirm) {
       return;
@@ -96,13 +97,14 @@ export class Todo {
     const value = (event.target as HTMLInputElement).value.toLocaleLowerCase();
 
     if (!value) {
-    this.filteredTodos = [...this.todos];
-    return;
-  }
+      this.filteredTodos = [...this.todos];
+      return;
+    }
 
-    this.filteredTodos = this.todos.filter(todo => 
-      todo.title.toLocaleLowerCase().includes(value) ||
-      todo.description.toLocaleLowerCase().includes(value)
-    )
+    this.filteredTodos = this.todos.filter(
+      (todo) =>
+        todo.title.toLocaleLowerCase().includes(value) ||
+        todo.description.toLocaleLowerCase().includes(value),
+    );
   }
 }

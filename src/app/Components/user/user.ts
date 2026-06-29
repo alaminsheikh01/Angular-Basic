@@ -11,7 +11,7 @@ import { map, Observable } from 'rxjs';
   styleUrl: './user.css',
 })
 export class User {
-  userForm: FormGroup = new FormGroup({
+  userForm = new FormGroup({
     userId: new FormControl(0),
     userName: new FormControl(''),
     emailId: new FormControl(''),
@@ -22,6 +22,7 @@ export class User {
   http = inject(HttpClient);
 
   userList$: Observable<any[]>;
+
   constructor() {
     this.userList$ = this.http
       .get<any[]>('https://api.freeprojectapi.com/api/BankLoan/GetAllUsers')
@@ -41,12 +42,12 @@ export class User {
       });
   }
 
-  restForm(){
-    this.userForm.reset()
+  restForm() {
+    this.userForm.reset();
   }
-  onUpdateUser(){}
+  onUpdateUser() {}
 
-  onEdit(data:any) {
+  onEdit(data: any) {
     this.userForm = new FormGroup({
       userId: new FormControl(data?.userId),
       userName: new FormControl(data?.userName),
