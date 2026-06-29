@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h2 class="text-center">Quiz Game</h2>
+  </div>
+  @if (!gamenotFinised) {
+    <h4>Question {{ currentQuestion + 1 }}</h4>
+
+    <h3>
+      {{ question[currentQuestion].question }}
+    </h3>
+
+    <div class="mt-4">
+      @for (option of question[currentQuestion].options; track $index) {
+        <button (click)="selectAnswer(option)" class="btn btn-outline-primary d-block mb-2 w-100">
+          {{ option }}
+        </button>
+      }
+    </div>
+    <button class="btn btn-success mt-3" (click)="nextQuestion()">Next</button>
+  } @else {
+    <h2>Quiz Finished</h2>
+    <h3>Score: {{ score }}/{{ question.length }}</h3>
+
+    <button class="btn btn-primary" (click)="restart()">Restart</button>
+  }
+</div>
